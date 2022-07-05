@@ -36,15 +36,15 @@
 </template>
 
 <script lang="ts">
-import Layout from './layouts/default.vue'
-import PiniaLogo from './components/PiniaLogo.vue'
+// import Layout from './layouts/default.vue'
+// import PiniaLogo from './components/PiniaLogo.vue'
 
 import { defineComponent, ref } from 'vue'
 import { useUserStore } from './stores/user'
 import { useCartStore } from './stores/cart'
 
 export default defineComponent({
-  components: { Layout, PiniaLogo },
+  components: {  },
 
   setup() {
     const user = useUserStore()
