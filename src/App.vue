@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div>
-      <div style="margin: 1rem 0;">
+      <div style="margin: 1rem 0">
         <PiniaLogo />
       </div>
 
@@ -16,20 +16,20 @@
         <ul data-testid="items">
           <li v-for="item in cart.items" :key="item.name">
             {{ item.name }} ({{ item.amount }})
-            <button
-              @click="cart.removeItem(item.name)"
-              type="button"
-            >X</button>
+            <button @click="cart.removeItem(item.name)" type="button">X</button>
           </li>
         </ul>
 
+        <button :disabled=true>测试</button>
         <button :disabled="!user.name">Buy</button>
         <button
           :disabled="!cart.items.length"
           @click="clearCart"
           type="button"
           data-testid="clear"
-        >Clear the cart</button>
+        >
+          Clear the cart
+        </button>
       </form>
     </div>
   </Layout>
@@ -39,41 +39,41 @@
 // import Layout from './layouts/default.vue'
 // import PiniaLogo from './components/PiniaLogo.vue'
 
-import { defineComponent, ref } from 'vue'
-import { useUserStore } from './stores/user'
-import { useCartStore } from './stores/cart'
+import { defineComponent, ref } from "vue";
+import { useUserStore } from "./stores/user";
+import { useCartStore } from "./stores/cart";
 
 export default defineComponent({
-  components: {  },
+  components: {},
 
   setup() {
-    const user = useUserStore()
-    const cart = useCartStore()
+    const user = useUserStore();
+    const cart = useCartStore();
 
-    const itemName = ref('')
+    const itemName = ref("");
 
     function addItemToCart() {
-      if (!itemName.value) return
-      cart.addItem(itemName.value)
-      itemName.value = ''
+      if (!itemName.value) return;
+      cart.addItem(itemName.value);
+      itemName.value = "";
     }
 
     function clearCart() {
-      if (window.confirm('Are you sure you want to clear the cart?')) {
-        cart.rawItems = []
+      if (window.confirm("Are you sure you want to clear the cart?")) {
+        cart.rawItems = [];
       }
     }
 
     async function buy() {
-      const n = await cart.purchaseItems()
+      const n = await cart.purchaseItems();
 
-      console.log(`Bought ${n} items`)
+      console.log(`Bought ${n} items`);
 
-      cart.rawItems = []
+      cart.rawItems = [];
     }
 
     // @ts-ignore
-    window.stores = { user, cart }
+    window.stores = { user, cart };
 
     return {
       itemName,
@@ -83,9 +83,9 @@ export default defineComponent({
       user,
       buy,
       clearCart,
-    }
+    };
   },
-})
+});
 </script>
 
 <style scoped>

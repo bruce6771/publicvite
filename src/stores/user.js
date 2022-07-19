@@ -15,7 +15,7 @@ function apiLogin(a, p) {
 export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
-    name: 'Eduardo',
+    name: 'Eduardo22',
     isAdmin: true,
   }),
 
@@ -45,6 +45,6 @@ export const useUserStore = defineStore({
   },
 })
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))
-}
+// if (import.meta.hot) {
+//   import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))
+// }

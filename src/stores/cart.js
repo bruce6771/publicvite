@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useUserStore } from './user'
 
@@ -14,11 +15,14 @@ export const useCartStore = defineStore({
      */
     items: (state) =>
       state.rawItems.reduce((items, item) => {
+        // @ts-ignore
         const existingItem = items.find((it) => it.name === item)
 
         if (!existingItem) {
+          // @ts-ignore
           items.push({ name: item, amount: 1 })
         } else {
+          // @ts-ignore
           existingItem.amount++
         }
 
@@ -56,6 +60,6 @@ export const useCartStore = defineStore({
   },
 })
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
-}
+// if (import.meta.hot) {
+//   import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
+// }
